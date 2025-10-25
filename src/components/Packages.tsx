@@ -8,6 +8,27 @@ const Packages = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const packages = [
+    {
+      name: "Family Package",
+      description: "Perfect for families and small groups with entry, refreshments, play area access, and parking.",
+      price: 299,
+      features: ["Entry for the day", "Basic refreshments", "Access to play area", "Clean washroom facilities", "Parking included"]
+    },
+    {
+      name: "Group Package",
+      description: "Great for friends and larger groups with full day entry, meals, games, and event coordination.",
+      price: 499,
+      features: ["Full day entry", "Welcome drink + snacks", "Lunch (veg/non-veg)", "Games & activities", "Event coordination", "Photography area"]
+    },
+    {
+      name: "Corporate Package",
+      description: "Ideal for team outings and corporate events with full venue booking, meals, and team building activities.",
+      price: 799,
+      features: ["Full day venue booking", "Welcome + tea/coffee", "Full meals included", "Team building activities", "Sound system & mic", "Dedicated coordinator"]
+    }
+  ];
+
   return (
     <section id="packages" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -169,6 +190,40 @@ const Packages = () => {
           </Card>
         </div>
       </div>
+
+      {/* Offer Schema Markup */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": packages.map((pkg, index) => ({
+            "@type": "Offer",
+            "position": index + 1,
+            "name": pkg.name,
+            "description": pkg.description,
+            "price": pkg.price,
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "LocalBusiness",
+              "name": "Picnic Point - Hurda Party Solapur",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Picnic Point Road",
+                "addressLocality": "Solapur",
+                "addressRegion": "Maharashtra",
+                "postalCode": "413001",
+                "addressCountry": "IN"
+              }
+            },
+            "itemOffered": {
+              "@type": "Product",
+              "name": pkg.name,
+              "description": pkg.description
+            }
+          }))
+        })}
+      </script>
     </section>
   );
 };

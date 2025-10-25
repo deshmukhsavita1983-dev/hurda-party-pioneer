@@ -53,6 +53,32 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+
+      {/* Review Schema Markup */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": testimonials.map((testimonial, index) => ({
+            "@type": "Review",
+            "position": index + 1,
+            "author": {
+              "@type": "Person",
+              "name": testimonial.name
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": testimonial.rating,
+              "bestRating": 5
+            },
+            "reviewBody": testimonial.text,
+            "itemReviewed": {
+              "@type": "LocalBusiness",
+              "name": "Picnic Point - Hurda Party Solapur"
+            }
+          }))
+        })}
+      </script>
     </section>
   );
 };

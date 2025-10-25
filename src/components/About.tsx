@@ -36,6 +36,64 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      {/* Event Schema Markup */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": "Hurda Party Season at Picnic Point Solapur",
+          "description": "Experience Maharashtra's iconic Hurda Party at Picnic Point, Solapur. Traditional freshly roasted hurda with authentic Maharashtrian hospitality.",
+          "startDate": "2025-11-01",
+          "endDate": "2025-02-28",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": "Picnic Point Solapur",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Picnic Point Road",
+              "addressLocality": "Solapur",
+              "addressRegion": "Maharashtra",
+              "postalCode": "413001",
+              "addressCountry": "IN"
+            }
+          },
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Family Package",
+              "price": 299,
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "url": "https://picnic-point.com"
+            },
+            {
+              "@type": "Offer",
+              "name": "Group Package",
+              "price": 499,
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "url": "https://picnic-point.com"
+            },
+            {
+              "@type": "Offer",
+              "name": "Corporate Package",
+              "price": 799,
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "url": "https://picnic-point.com"
+            }
+          ],
+          "organizer": {
+            "@type": "LocalBusiness",
+            "name": "Picnic Point Solapur",
+            "telephone": "+91-92258 19192",
+            "email": "info@picnic-point.com"
+          }
+        })}
+      </script>
     </section>
   );
 };
