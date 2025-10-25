@@ -49,14 +49,14 @@ const Contact = () => {
                   <div className="text-primary mr-3 text-xl">📍</div>
                   <div>
                     <p className="font-semibold text-foreground">Location</p>
-                    <p className="text-muted-foreground">Picnic Point, Solapur, Maharashtra 413001</p>
+                    <p className="text-muted-foreground">Picnic Point Road, Solapur, Maharashtra</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="text-primary mr-3 text-xl">📞</div>
                   <div>
                     <p className="font-semibold text-foreground">Phone</p>
-                    <p className="text-muted-foreground">+91-XXXXXXXXXX</p>
+                    <p className="text-muted-foreground">+91-92258 19192</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -70,7 +70,8 @@ const Contact = () => {
                   <div className="text-primary mr-3 text-xl">⏰</div>
                   <div>
                     <p className="font-semibold text-foreground">Opening Hours</p>
-                    <p className="text-muted-foreground">Monday - Sunday: 9:00 AM - 6:00 PM</p>
+                    <p className="text-muted-foreground">Monday - Sunday: 6:00 AM - 8:00 PM</p>
+                    <p className="text-muted-foreground text-sm">Best time: 7:00 AM - 6:00 PM</p>
                   </div>
                 </div>
               </div>

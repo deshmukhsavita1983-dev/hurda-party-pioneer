@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border py-12">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-5 gap-8 mb-8">
           <div>
             <h3 className="text-xl font-bold mb-4 text-foreground">Picnic Point</h3>
             <p className="text-muted-foreground">
@@ -33,9 +33,18 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">Contact</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li>Solapur, Maharashtra</li>
-              <li>+91-XXXXXXXXXX</li>
+              <li>Picnic Point Road, Solapur, Maharashtra</li>
+              <li>+91-92258 19192</li>
               <li>info@picnicpointsolapur.com</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold mb-4 text-foreground">Opening Hours</h4>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>Monday - Sunday</li>
+              <li>6:00 AM - 8:00 PM</li>
+              <li className="text-sm">Best time: 7:00 AM - 6:00 PM</li>
             </ul>
           </div>
         </div>

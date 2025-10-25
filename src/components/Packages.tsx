@@ -21,7 +21,7 @@ const Packages = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/50">
             <div className="h-64 overflow-hidden">
               <img 
@@ -31,39 +31,89 @@ const Packages = () => {
               />
             </div>
             <CardHeader>
-              <CardTitle className="text-2xl text-foreground">Family Hurda Party Package</CardTitle>
+              <CardTitle className="text-2xl text-foreground">Family Package</CardTitle>
               <CardDescription className="text-base">Perfect for families and small groups</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  Fresh roasted hurda with traditional masala
+                  Entry for the day
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  Complementary snacks and beverages
+                  Basic refreshments
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  Access to play area and games
+                  Access to play area
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  Shaded seating arrangements
+                  Clean washroom facilities
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2">✓</span>
-                  Photography-friendly locations
+                  Parking included
                 </li>
               </ul>
               <div className="mt-6">
-                <p className="text-3xl font-bold text-primary">₹499 <span className="text-base text-muted-foreground font-normal">per person</span></p>
+                <p className="text-3xl font-bold text-primary">₹299 <span className="text-base text-muted-foreground font-normal">per person</span></p>
               </div>
             </CardContent>
             <CardFooter>
               <Button className="w-full bg-primary hover:bg-primary-glow" size="lg" onClick={scrollToBooking}>
                 Book Family Package
+              </Button>
+            </CardFooter>
+          </Card>
+
+          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/50">
+            <div className="h-64 overflow-hidden">
+              <img 
+                src={familyImage} 
+                alt="Group hurda party picnic at Picnic Point Solapur" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <CardHeader>
+              <CardTitle className="text-2xl text-foreground">Group Package</CardTitle>
+              <CardDescription className="text-base">Great for friends and larger groups</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start">
+                  <span className="text-accent mr-2">✓</span>
+                  Full day entry
+                </li>
+                <li className="flex items-start">
+                  <span className="text-accent mr-2">✓</span>
+                  Welcome drink + snacks
+                </li>
+                <li className="flex items-start">
+                  <span className="text-accent mr-2">✓</span>
+                  Lunch (veg/non-veg)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-accent mr-2">✓</span>
+                  Games & activities
+                </li>
+                <li className="flex items-start">
+                  <span className="text-accent mr-2">✓</span>
+                  Event coordination
+                </li>
+                <li className="flex items-start">
+                  <span className="text-accent mr-2">✓</span>
+                  Photography area
+                </li>
+              </ul>
+              <div className="mt-6">
+                <p className="text-3xl font-bold text-accent">₹499 <span className="text-base text-muted-foreground font-normal">per person</span></p>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full bg-accent hover:bg-accent/90" size="lg" onClick={scrollToBooking}>
+                Book Group Package
               </Button>
             </CardFooter>
           </Card>
@@ -77,30 +127,34 @@ const Packages = () => {
               />
             </div>
             <CardHeader>
-              <CardTitle className="text-2xl text-foreground">Corporate Hurda Party Package</CardTitle>
+              <CardTitle className="text-2xl text-foreground">Corporate Package</CardTitle>
               <CardDescription className="text-base">Ideal for team outings and corporate events</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start">
                   <span className="text-secondary mr-2">✓</span>
-                  Premium hurda menu with variety
+                  Full day venue booking
                 </li>
                 <li className="flex items-start">
                   <span className="text-secondary mr-2">✓</span>
-                  Team building activities and games
+                  Welcome + tea/coffee
                 </li>
                 <li className="flex items-start">
                   <span className="text-secondary mr-2">✓</span>
-                  Audio system for presentations
+                  Full meals included
                 </li>
                 <li className="flex items-start">
                   <span className="text-secondary mr-2">✓</span>
-                  Dedicated event coordinator
+                  Team building activities
                 </li>
                 <li className="flex items-start">
                   <span className="text-secondary mr-2">✓</span>
-                  Customizable catering options
+                  Sound system & mic
+                </li>
+                <li className="flex items-start">
+                  <span className="text-secondary mr-2">✓</span>
+                  Dedicated coordinator
                 </li>
               </ul>
               <div className="mt-6">
