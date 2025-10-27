@@ -1,4 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 const Testimonials = () => {
   const testimonials = [
@@ -51,6 +53,15 @@ const Testimonials = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <a href="/reviews">
+            <Button size="lg" variant="outline" className="group">
+              Read More Guest Stories & Reviews
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
         </div>
       </div>
 
