@@ -47,7 +47,7 @@ const Packages = () => {
             <div className="h-64 overflow-hidden">
               <img 
                 src={familyImage} 
-                alt="Family hurda party picnic at Picnic Point Solapur" 
+                alt="Traditional Maharashtrian hurda party family picnic at Picnic Point Solapur resort with outdoor activities" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -93,7 +93,7 @@ const Packages = () => {
             <div className="h-64 overflow-hidden">
               <img 
                 src={familyImage} 
-                alt="Group hurda party picnic at Picnic Point Solapur" 
+                alt="Group hurda party celebration with authentic Maharashtrian feast and outdoor games at Picnic Point Solapur" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -143,7 +143,7 @@ const Packages = () => {
             <div className="h-64 overflow-hidden">
               <img 
                 src={corporateImage} 
-                alt="Corporate hurda party team building at Picnic Point Solapur" 
+                alt="Corporate team building hurda party event with traditional food and activities at Solapur picnic resort" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
