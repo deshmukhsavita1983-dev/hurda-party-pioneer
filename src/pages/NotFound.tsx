@@ -6,6 +6,11 @@ const NotFound = () => {
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    document.title = "Page Not Found – Picnic Point Solapur";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'This page could not be found. Return to Picnic Point Solapur to book your hurda party experience.');
+    }
   }, [location.pathname]);
 
   return (

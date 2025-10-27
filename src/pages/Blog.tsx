@@ -2,9 +2,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import Footer from "@/components/Footer";
 
 const Blog = () => {
+  // Set blog page meta tags for SEO
+  useEffect(() => {
+    document.title = "Hurda Party Blog – Tips & Stories | Picnic Point";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Read our blog for hurda party tips, seasonal guides, and authentic Maharashtrian food experiences at Picnic Point Solapur.');
+    }
+  }, []);
+
   const blogPosts = [
     {
       id: 1,
