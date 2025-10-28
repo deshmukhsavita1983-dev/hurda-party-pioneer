@@ -83,6 +83,46 @@ const FAQ = () => {
                 However, you can reschedule your booking free of charge up to 24 hours before the event.
               </AccordionContent>
             </AccordionItem>
+
+            <AccordionItem value="item-7">
+              <AccordionTrigger className="text-left text-lg">
+                Do you provide transportation to Picnic Point Solapur?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                While we don't provide direct transportation, we can help arrange transport for large groups. 
+                We have partnerships with local transport services. Ample parking is available for personal vehicles.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-8">
+              <AccordionTrigger className="text-left text-lg">
+                What payment methods do you accept for Hurda Party bookings?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                We accept cash, UPI, credit/debit cards, and online bank transfers. A 30% advance payment is 
+                required to confirm your booking, with the remaining balance payable on arrival.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-9">
+              <AccordionTrigger className="text-left text-lg">
+                Are pets allowed at Picnic Point during Hurda Party?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Small, well-behaved pets are welcome in designated outdoor areas. Please inform us during booking 
+                if you plan to bring pets. We request that pets be kept on leash and supervised at all times.
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-10">
+              <AccordionTrigger className="text-left text-lg">
+                Can I bring my own food to the Hurda Party venue?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground">
+                Outside food is not permitted as we provide comprehensive catering. However, we're happy to 
+                accommodate special dietary needs and preferences. Please discuss your requirements with us when booking.
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </div>
       </div>
@@ -114,6 +154,46 @@ const FAQ = () => {
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Yes! Hurda Party is family-friendly with dedicated play areas, kid-friendly snacks, and safe supervised spaces for children of all ages."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the best time to visit for Hurda Party?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Hurda season runs from December to February. Morning slots (9 AM - 1 PM) and evening slots (3 PM - 7 PM) are available."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I customize the menu or add special requests?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, we accommodate special dietary requirements and preferences. Corporate packages include customizable catering options."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is your cancellation policy?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Cancellations made 48 hours before receive full refund, 24-48 hours receive 50% refund. Free rescheduling available up to 24 hours before event."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you provide transportation to Picnic Point Solapur?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We can help arrange transport for large groups through partner services. Ample parking available for personal vehicles."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What payment methods do you accept?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We accept cash, UPI, credit/debit cards, and online bank transfers. 30% advance required to confirm booking."
               }
             }
           ]

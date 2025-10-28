@@ -13,11 +13,12 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">Quick Links</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#packages" className="hover:text-primary transition-colors">Packages</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors">Book Now</a></li>
+              <li><a href="/#packages" className="hover:text-primary transition-colors">Packages</a></li>
+              <li><a href="/#contact" className="hover:text-primary transition-colors">Book Now</a></li>
+              <li><a href="/hurda-party-solapur" className="hover:text-primary transition-colors">Hurda Party Solapur</a></li>
+              <li><a href="/family-package" className="hover:text-primary transition-colors">Family Package</a></li>
               <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
               <li><a href="/reviews" className="hover:text-primary transition-colors">Guest Reviews</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
             </ul>
           </div>
           

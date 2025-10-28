@@ -6,6 +6,9 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import PromoBanner from "@/components/PromoBanner";
+import StickyBookingCTA from "@/components/StickyBookingCTA";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Index = () => {
   // Set home page meta tags
@@ -18,15 +21,22 @@ const Index = () => {
   }, []);
 
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <About />
-      <Packages />
-      <Testimonials />
-      <FAQ />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <PromoBanner />
+      <StickyBookingCTA />
+      <div className="fixed top-20 right-4 z-40">
+        <LanguageSwitcher />
+      </div>
+      <main className="min-h-screen">
+        <Hero />
+        <About />
+        <Packages />
+        <Testimonials />
+        <FAQ />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   );
 };
 
