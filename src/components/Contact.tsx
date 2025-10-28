@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { Shield, Lock, RefreshCcw, CheckCircle2 } from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -15,13 +18,49 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Booking Request Received!",
-      description: "We'll contact you within 24 hours to confirm your Hurda Party booking.",
-    });
-    setFormData({ name: '', phone: '', email: '', guests: '', date: '', message: '' });
+    
+    // Basic validation
+    if (!formData.name || !formData.phone || !formData.guests || !formData.date) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const { error } = await supabase.from('bookings').insert({
+        customer_name: formData.name,
+        customer_phone: formData.phone,
+        customer_email: formData.email,
+        guests_count: parseInt(formData.guests),
+        booking_date: formData.date,
+        time_slot: 'morning', // Default time slot
+        package_type: 'family', // Default package
+        special_requests: formData.message,
+        booked_slots: parseInt(formData.guests),
+        status: 'pending',
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Booking Request Received! ✓",
+        description: "We'll contact you shortly to confirm your Hurda Party booking.",
+      });
+      
+      setFormData({ name: '', phone: '', email: '', guests: '', date: '', message: '' });
+    } catch (error) {
+      console.error('Booking error:', error);
+      toast({
+        title: "Booking Error",
+        description: "There was an issue submitting your booking. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -77,23 +116,23 @@ const Contact = () => {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 bg-card p-6 rounded-lg shadow-lg border-2">
               <Input 
-                placeholder="Your Name" 
+                placeholder="Your Name *" 
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="bg-card"
+                className="bg-background"
               />
               <Input 
-                placeholder="Phone Number" 
+                placeholder="Phone Number *" 
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                className="bg-card"
+                className="bg-background"
               />
               <Input 
                 placeholder="Email Address" 
@@ -101,39 +140,77 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
-                className="bg-card"
+                className="bg-background"
               />
               <div className="grid grid-cols-2 gap-4">
                 <Input 
-                  placeholder="Number of Guests" 
+                  placeholder="Number of Guests *" 
                   type="number"
                   name="guests"
                   value={formData.guests}
                   onChange={handleChange}
                   required
-                  className="bg-card"
+                  min="1"
+                  className="bg-background"
                 />
                 <Input 
-                  placeholder="Preferred Date" 
+                  placeholder="Preferred Date *" 
                   type="date"
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
                   required
-                  className="bg-card"
+                  min={new Date().toISOString().split('T')[0]}
+                  className="bg-background"
                 />
               </div>
               <Textarea 
-                placeholder="Additional Requirements or Questions"
+                placeholder="Special Requests or Questions"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="min-h-[100px] bg-card"
+                className="min-h-[100px] bg-background"
               />
+
+              {/* Trust Badges */}
+              <div className="grid grid-cols-2 gap-4 py-4 border-t border-b">
+                <div className="flex items-center gap-2 text-sm">
+                  <Shield className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-muted-foreground">Secure Booking</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Lock className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-muted-foreground">SSL Protected</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <RefreshCcw className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-muted-foreground">Free Rescheduling</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-muted-foreground">No Hidden Charges</span>
+                </div>
+              </div>
+
+              <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <Badge className="bg-primary/10 text-primary border-primary/20">
+                    <Shield className="h-3 w-3 mr-1" />
+                    100% Secure
+                  </Badge>
+                  <p className="text-sm text-muted-foreground flex-1">
+                    Your information is encrypted and protected. We offer flexible cancellation and money-back guarantee.
+                  </p>
+                </div>
+              </div>
+
               <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary-glow">
-                Submit Booking Request
+                Book Your Hurda Party - Safe & Secure
               </Button>
+
+              <p className="text-xs text-center text-muted-foreground">
+                By booking, you agree to our flexible rescheduling policy and terms
+              </p>
             </form>
           </div>
         </div>

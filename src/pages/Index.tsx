@@ -9,6 +9,10 @@ import Footer from "@/components/Footer";
 import PromoBanner from "@/components/PromoBanner";
 import StickyBookingCTA from "@/components/StickyBookingCTA";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import BookingCalendar from "@/components/BookingCalendar";
+import FloatingContact from "@/components/FloatingContact";
+import GroupOffers from "@/components/GroupOffers";
+import DownloadMenu from "@/components/DownloadMenu";
 
 const Index = () => {
   // Set home page meta tags
@@ -24,13 +28,17 @@ const Index = () => {
     <>
       <PromoBanner />
       <StickyBookingCTA />
+      <FloatingContact />
       <div className="fixed top-20 right-4 z-40">
         <LanguageSwitcher />
       </div>
       <main className="min-h-screen">
         <Hero />
         <About />
+        <GroupOffers />
         <Packages />
+        <BookingCalendar />
+        <DownloadMenu />
         <Testimonials />
         <FAQ />
         <Contact />
