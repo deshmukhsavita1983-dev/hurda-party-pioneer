@@ -1,14 +1,31 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 import { Shield, Lock, RefreshCcw, CheckCircle2 } from "lucide-react";
+import { z } from "zod";
+
+const bookingSchema = z.object({
+  customer_name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
+  customer_phone: z.string().trim().regex(/^\+?[1-9]\d{9,14}$/, "Please enter a valid phone number with country code (e.g., +919876543210)"),
+  customer_email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters").optional().or(z.literal('')),
+  guests_count: z.number().int().min(1, "At least 1 guest required").max(200, "Maximum 200 guests allowed"),
+  booking_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format"),
+  time_slot: z.enum(['morning', 'afternoon', 'evening'], { errorMap: () => ({ message: "Please select a valid time slot" }) }),
+  package_type: z.string().trim().min(1, "Package type is required").max(50, "Package type must be less than 50 characters"),
+  special_requests: z.string().trim().max(1000, "Special requests must be less than 1000 characters").optional().or(z.literal('')),
+});
 
 const Contact = () => {
   const { toast } = useToast();
+  const { user, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -18,48 +35,89 @@ const Contact = () => {
     message: ''
   });
 
+  useEffect(() => {
+    if (!authLoading && user && formData.name === '') {
+      const fetchProfile = async () => {
+        const { data } = await supabase
+          .from('profiles')
+          .select('full_name, email, phone')
+          .eq('id', user.id)
+          .maybeSingle();
+        
+        if (data) {
+          setFormData(prev => ({
+            ...prev,
+            name: data.full_name || '',
+            email: data.email || '',
+            phone: data.phone || '',
+          }));
+        }
+      };
+      fetchProfile();
+    }
+  }, [authLoading, user]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.name || !formData.phone || !formData.guests || !formData.date) {
+    if (!user) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
+        title: "Authentication Required",
+        description: "Please sign in to make a booking.",
         variant: "destructive",
       });
+      navigate('/auth');
       return;
     }
 
     try {
-      const { error } = await supabase.from('bookings').insert({
+      const validatedData = bookingSchema.parse({
         customer_name: formData.name,
         customer_phone: formData.phone,
-        customer_email: formData.email,
-        guests_count: parseInt(formData.guests),
+        customer_email: formData.email || '',
         booking_date: formData.date,
-        time_slot: 'morning', // Default time slot
-        package_type: 'family', // Default package
-        special_requests: formData.message,
-        booked_slots: parseInt(formData.guests),
-        status: 'pending',
+        guests_count: parseInt(formData.guests),
+        time_slot: 'morning',
+        package_type: 'family',
+        special_requests: formData.message || '',
+      });
+
+      const { error } = await supabase.from("bookings").insert({
+        user_id: user.id,
+        customer_name: validatedData.customer_name,
+        customer_phone: validatedData.customer_phone,
+        customer_email: validatedData.customer_email || null,
+        booking_date: validatedData.booking_date,
+        guests_count: validatedData.guests_count,
+        time_slot: validatedData.time_slot,
+        package_type: validatedData.package_type,
+        special_requests: validatedData.special_requests || null,
+        booked_slots: validatedData.guests_count,
+        status: 'confirmed'
       });
 
       if (error) throw error;
 
       toast({
-        title: "Booking Request Received! ✓",
-        description: "We'll contact you shortly to confirm your Hurda Party booking.",
+        title: "Booking Confirmed!",
+        description: "We'll contact you shortly to finalize the details.",
       });
-      
+
       setFormData({ name: '', phone: '', email: '', guests: '', date: '', message: '' });
     } catch (error) {
-      console.error('Booking error:', error);
-      toast({
-        title: "Booking Error",
-        description: "There was an issue submitting your booking. Please try again or call us directly.",
-        variant: "destructive",
-      });
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Booking Error",
+          description: "Unable to process booking. Please try again or contact us directly.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -71,6 +129,14 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gradient-to-b from-muted/30 to-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
+          {!user && (
+            <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center">
+              <p className="text-amber-800">
+                Please <button onClick={() => navigate('/auth')} className="underline font-semibold">sign in or create an account</button> to make a booking.
+              </p>
+            </div>
+          )}
+          
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
               Book Your Hurda Party Today
@@ -124,15 +190,17 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 className="bg-background"
+                disabled={!user}
               />
               <Input 
-                placeholder="Phone Number *" 
+                placeholder="Phone Number (with country code, e.g., +919876543210) *" 
                 type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
                 className="bg-background"
+                disabled={!user}
               />
               <Input 
                 placeholder="Email Address" 
@@ -141,6 +209,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="bg-background"
+                disabled={!user}
               />
               <div className="grid grid-cols-2 gap-4">
                 <Input 
@@ -151,7 +220,9 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   min="1"
+                  max="200"
                   className="bg-background"
+                  disabled={!user}
                 />
                 <Input 
                   placeholder="Preferred Date *" 
@@ -162,17 +233,19 @@ const Contact = () => {
                   required
                   min={new Date().toISOString().split('T')[0]}
                   className="bg-background"
+                  disabled={!user}
                 />
               </div>
               <Textarea 
-                placeholder="Special Requests or Questions"
+                placeholder="Special Requests or Questions (max 1000 characters)"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 className="min-h-[100px] bg-background"
+                maxLength={1000}
+                disabled={!user}
               />
 
-              {/* Trust Badges */}
               <div className="grid grid-cols-2 gap-4 py-4 border-t border-b">
                 <div className="flex items-center gap-2 text-sm">
                   <Shield className="h-5 w-5 text-primary flex-shrink-0" />
@@ -204,8 +277,8 @@ const Contact = () => {
                 </div>
               </div>
 
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary-glow">
-                Book Your Hurda Party - Safe & Secure
+              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary-glow" disabled={!user}>
+                {user ? "Book Your Hurda Party - Safe & Secure" : "Sign In to Book"}
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">

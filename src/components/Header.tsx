@@ -8,6 +8,7 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import UserMenu from "./UserMenu";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,6 +52,7 @@ const Header = () => {
           </Menubar>
 
           <div className="flex items-center space-x-4 ml-4">
+            <UserMenu />
             <a
               href="tel:+919876543210"
               className="flex items-center space-x-2 text-sm hover:text-primary transition-colors"
@@ -99,21 +101,24 @@ const Header = () => {
                 {item.label}
               </Link>
             ))}
-            <div className="flex items-center space-x-4 pt-3 border-t">
-              <a
-                href="tel:+919876543210"
-                className="flex items-center space-x-2 text-sm"
-              >
-                <Phone className="h-4 w-4" />
-                <span>Call Us</span>
-              </a>
-              <a
-                href="mailto:info@picnicpoint.com"
-                className="flex items-center space-x-2 text-sm"
-              >
-                <Mail className="h-4 w-4" />
-                <span>Email</span>
-              </a>
+            <div className="flex flex-col space-y-3 pt-3 border-t">
+              <UserMenu />
+              <div className="flex items-center space-x-4">
+                <a
+                  href="tel:+919876543210"
+                  className="flex items-center space-x-2 text-sm"
+                >
+                  <Phone className="h-4 w-4" />
+                  <span>Call Us</span>
+                </a>
+                <a
+                  href="mailto:info@picnicpoint.com"
+                  className="flex items-center space-x-2 text-sm"
+                >
+                  <Mail className="h-4 w-4" />
+                  <span>Email</span>
+                </a>
+              </div>
             </div>
           </nav>
         </div>
