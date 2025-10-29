@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Packages from "@/components/Packages";
@@ -13,6 +14,11 @@ import BookingCalendar from "@/components/BookingCalendar";
 import FloatingContact from "@/components/FloatingContact";
 import GroupOffers from "@/components/GroupOffers";
 import DownloadMenu from "@/components/DownloadMenu";
+import VideoSection from "@/components/VideoSection";
+import FeatureSections from "@/components/FeatureSections";
+import ImageGallery from "@/components/ImageGallery";
+import SocialFeed from "@/components/SocialFeed";
+import PDFChecklistDownload from "@/components/PDFChecklistDownload";
 
 const Index = () => {
   // Set home page meta tags
@@ -26,6 +32,7 @@ const Index = () => {
 
   return (
     <>
+      <Header />
       <PromoBanner />
       <StickyBookingCTA />
       <FloatingContact />
@@ -34,11 +41,16 @@ const Index = () => {
       </div>
       <main className="min-h-screen">
         <Hero />
+        <VideoSection />
         <About />
+        <FeatureSections />
         <GroupOffers />
         <Packages />
         <BookingCalendar />
+        <ImageGallery />
+        <SocialFeed />
         <DownloadMenu />
+        <PDFChecklistDownload />
         <Testimonials />
         <FAQ />
         <Contact />

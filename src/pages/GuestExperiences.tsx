@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Quote, Calendar, Users } from "lucide-react";
 import { useEffect } from "react";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import familyHurdaImage from "@/assets/family-hurda.jpg";
 import corporateHurdaImage from "@/assets/corporate-hurda.jpg";
@@ -98,6 +99,7 @@ const GuestExperiences = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       {/* Hero Section */}
       <header className="relative bg-gradient-to-r from-primary/10 to-primary/5 py-20">
         <div className="container mx-auto px-4">

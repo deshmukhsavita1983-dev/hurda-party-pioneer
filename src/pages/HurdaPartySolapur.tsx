@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Clock, Users, Star, Phone, Calendar } from "lucide-react";
+import Header from "@/components/Header";
 import PromoBanner from "@/components/PromoBanner";
 import StickyBookingCTA from "@/components/StickyBookingCTA";
 import Footer from "@/components/Footer";
@@ -30,6 +31,7 @@ const HurdaPartySolapur = () => {
 
   return (
     <>
+      <Header />
       <PromoBanner />
       <StickyBookingCTA />
       

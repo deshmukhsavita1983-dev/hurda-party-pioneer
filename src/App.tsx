@@ -8,6 +8,8 @@ import Blog from "./pages/Blog";
 import GuestExperiences from "./pages/GuestExperiences";
 import HurdaPartySolapur from "./pages/HurdaPartySolapur";
 import FamilyPackage from "./pages/FamilyPackage";
+import Gallery from "./pages/Gallery";
+import NearbyAttractions from "./pages/NearbyAttractions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/reviews" element={<GuestExperiences />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/nearby-attractions" element={<NearbyAttractions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Blog = () => {
@@ -47,6 +48,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       <header className="bg-gradient-to-r from-primary/10 to-primary/5 py-20">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
