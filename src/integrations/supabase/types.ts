@@ -125,6 +125,13 @@ export type Database = {
         Args: { check_date: string; check_time_slot: string }
         Returns: number
       }
+      get_public_availability: {
+        Args: { check_date: string }
+        Returns: {
+          available_slots: number
+          time_slot: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

@@ -33,11 +33,8 @@ const BookingCalendar = () => {
     const formattedDate = format(date, 'yyyy-MM-dd');
     
     try {
-      const { data: bookings, error } = await supabase
-        .from('bookings')
-        .select('time_slot, total_slots, booked_slots')
-        .eq('booking_date', formattedDate)
-        .neq('status', 'cancelled');
+      const { data: slots, error } = await supabase
+        .rpc('get_public_availability', { check_date: formattedDate });
 
       if (error) throw error;
 
@@ -47,14 +44,16 @@ const BookingCalendar = () => {
         evening: 50,
       };
 
-      bookings?.forEach((booking) => {
-        const slot = booking.time_slot as keyof SlotAvailability;
-        newAvailability[slot] = booking.total_slots - booking.booked_slots;
+      slots?.forEach((slot) => {
+        const timeSlot = slot.time_slot as keyof SlotAvailability;
+        newAvailability[timeSlot] = slot.available_slots;
       });
 
       setAvailability(newAvailability);
     } catch (error) {
-      console.error('Error fetching availability:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching availability:', error);
+      }
     } finally {
       setLoading(false);
     }
