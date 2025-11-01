@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import Blog from "./pages/Blog";
 import GuestExperiences from "./pages/GuestExperiences";
 import HurdaPartySolapur from "./pages/HurdaPartySolapur";
+import HurdaPartyMenu from "./pages/HurdaPartyMenu";
 import FamilyPackage from "./pages/FamilyPackage";
 import Gallery from "./pages/Gallery";
 import NearbyAttractions from "./pages/NearbyAttractions";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/hurda-party-solapur" element={<HurdaPartySolapur />} />
+            <Route path="/hurda-party-menu" element={<HurdaPartyMenu />} />
             <Route path="/family-package" element={<FamilyPackage />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<Blog />} />

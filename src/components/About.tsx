@@ -1,16 +1,28 @@
+import aboutImage from "@/assets/about-section.jpg";
+
 const About = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Why Hurda Season at Picnic Point Solapur Is a Must-Visit Experience
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            Picnic Point in Solapur offers the most authentic Hurda Party experience in Maharashtra. 
-            Nestled in the heart of nature, our venue combines traditional Maharashtrian hospitality 
-            with modern amenities to create unforgettable memories.
-          </p>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              Why Hurda Season at Picnic Point Solapur Is a Must-Visit Experience
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+              Picnic Point in Solapur offers the most authentic Hurda Party experience in Maharashtra. 
+              Nestled in the heart of nature, our venue combines traditional Maharashtrian hospitality 
+              with modern amenities to create unforgettable memories.
+            </p>
+          </div>
+          
+          <div className="mb-12 rounded-2xl overflow-hidden shadow-xl">
+            <img 
+              src={aboutImage} 
+              alt="Traditional Maharashtrian hurda party at Picnic Point Solapur with families roasting jowar on wood fire in scenic outdoor setting" 
+              className="w-full h-auto object-cover"
+            />
+          </div>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             <div className="p-6 rounded-lg bg-card shadow-md hover:shadow-lg transition-all duration-300">
               <div className="text-4xl mb-4">🌾</div>

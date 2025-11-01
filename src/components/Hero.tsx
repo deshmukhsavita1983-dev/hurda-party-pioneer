@@ -17,10 +17,10 @@ const Hero = () => {
       
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground leading-tight">
+          <h1 className="font-bold mb-6 text-foreground leading-tight" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}>
             Book the Best <span className="text-primary">Hurda Party</span> in Solapur
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-muted-foreground">
+          <p className="text-lg md:text-xl lg:text-2xl mb-8 text-muted-foreground leading-relaxed">
             Experience Maharashtra's iconic Hurda Party at Picnic Point. Perfect for families, corporates, and friends. Authentic flavors, unforgettable memories.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">

@@ -10,10 +10,10 @@ import heroImage from "@/assets/hurda-party-hero.jpg";
 
 const HurdaPartySolapur = () => {
   useEffect(() => {
-    document.title = "Hurda Party Solapur | Best Venue at Picnic Point";
+    document.title = "Best Hurda Party Solapur – Picnic Point Authentic Maharashtra Experience";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Book the best Hurda Party in Solapur at Picnic Point. Fresh roasted hurda, scenic location, perfect for families and groups. Reserve your spot today!');
+      metaDescription.setAttribute('content', 'Book the best hurda party venue in Solapur at Picnic Point. Authentic freshly roasted jowar, scenic outdoor location, family packages from ₹299. Perfect for families, groups & corporate events.');
     }
   }, []);
 

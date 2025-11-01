@@ -4,6 +4,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import siddheshwarImage from "@/assets/siddheshwar-temple.jpg";
+import solapurFortImage from "@/assets/solapur-fort.jpg";
+import bustardImage from "@/assets/bustard-sanctuary.jpg";
+
+const attractionImages: Record<string, string> = {
+  "Siddheshwar Temple": siddheshwarImage,
+  "Solapur Fort": solapurFortImage,
+  "Great Indian Bustard Sanctuary": bustardImage,
+};
 
 const attractions = [
   {
@@ -109,7 +118,16 @@ const NearbyAttractions = () => {
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {attractions.map((attraction, index) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <Card key={index} className="hover:shadow-lg transition-shadow overflow-hidden">
+                    {attractionImages[attraction.name] && (
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={attractionImages[attraction.name]} 
+                          alt={`${attraction.name} - Popular tourist attraction near Picnic Point Solapur, ${attraction.description}`}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
                     <CardHeader>
                       <CardTitle className="text-lg">{attraction.name}</CardTitle>
                       <CardDescription className="flex items-center space-x-4 text-sm">
