@@ -139,12 +139,55 @@ const HurdaPartySolapur = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4 mb-6">
                     <MapPin className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-xl font-bold mb-2 text-foreground">Address</h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-muted-foreground mb-4">
                         Picnic Point Road, Solapur, Maharashtra 413001
                       </p>
+                      {/* Mobile-Optimized Action Buttons */}
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button 
+                          asChild 
+                          size="lg"
+                          className="flex-1"
+                        >
+                          <a 
+                            href="https://www.google.com/maps/dir/?api=1&destination=17.6599,75.9064" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2"
+                          >
+                            <MapPin className="h-5 w-5" />
+                            Get Directions
+                          </a>
+                        </Button>
+                        <Button 
+                          asChild 
+                          variant="outline"
+                          size="lg"
+                          className="flex-1 sm:hidden"
+                        >
+                          <a href="tel:+919225819192" className="flex items-center justify-center gap-2">
+                            <Phone className="h-5 w-5" />
+                            Call Now
+                          </a>
+                        </Button>
+                      </div>
                     </div>
+                  </div>
+
+                  {/* Google Maps Embed */}
+                  <div className="mb-6 rounded-lg overflow-hidden shadow-md">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.7856893424906!2d75.90654311483042!3d17.679593887809367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5c8e9b5a0a0a1%3A0x1!2sSolapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
+                      width="100%"
+                      height="400"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Picnic Point Solapur Location Map"
+                    ></iframe>
                   </div>
 
                   <div className="flex items-start gap-4 mb-6">
@@ -219,13 +262,15 @@ const HurdaPartySolapur = () => {
         <Footer />
       </main>
 
-      {/* Schema Markup */}
+      {/* Enhanced LocalBusiness Schema Markup */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "name": "Picnic Point Solapur - Hurda Party",
-          "description": "Best Hurda Party venue in Solapur with authentic roasted hurda, scenic location, and modern amenities",
+          "description": "Best Hurda Party venue in Solapur with authentic roasted hurda, scenic location, and modern amenities. Perfect for families, corporates, and group celebrations.",
+          "image": "https://picnic-point.com/images/hurda-party-solapur.jpg",
+          "url": "https://picnic-point.com/hurda-party-solapur",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Picnic Point Road",
@@ -240,14 +285,21 @@ const HurdaPartySolapur = () => {
             "longitude": "75.9064"
           },
           "telephone": "+91-92258-19192",
+          "email": "info@picnicpointsolapur.com",
           "priceRange": "₹₹",
-          "servesCuisine": "Indian",
+          "servesCuisine": ["Indian", "Maharashtrian"],
           "openingHours": "Mo-Su 06:00-20:00",
+          "acceptsReservations": "True",
+          "hasMap": "https://www.google.com/maps?q=17.6599,75.9064",
           "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.8",
-            "reviewCount": "150"
-          }
+            "reviewCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "paymentAccepted": ["Cash", "Credit Card", "UPI"],
+          "currenciesAccepted": "INR"
         })}
       </script>
     </>

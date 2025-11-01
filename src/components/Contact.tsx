@@ -149,7 +149,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-foreground">Get in Touch</h3>
-              <div className="space-y-4">
+              <div className="space-y-4 mb-6">
                 <div className="flex items-start">
                   <div className="text-primary mr-3 text-xl">📍</div>
                   <div>
@@ -161,14 +161,18 @@ const Contact = () => {
                   <div className="text-primary mr-3 text-xl">📞</div>
                   <div>
                     <p className="font-semibold text-foreground">Phone</p>
-                    <p className="text-muted-foreground">+91-92258 19192</p>
+                    <a href="tel:+919225819192" className="text-primary hover:underline font-medium">
+                      +91-92258 19192
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="text-primary mr-3 text-xl">✉️</div>
                   <div>
                     <p className="font-semibold text-foreground">Email</p>
-                    <p className="text-muted-foreground">info@picnicpointsolapur.com</p>
+                    <a href="mailto:info@picnicpointsolapur.com" className="text-primary hover:underline">
+                      info@picnicpointsolapur.com
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -179,6 +183,48 @@ const Contact = () => {
                     <p className="text-muted-foreground text-sm">Best time: 7:00 AM - 6:00 PM</p>
                   </div>
                 </div>
+              </div>
+
+              {/* Mobile Action Buttons */}
+              <div className="flex flex-col gap-3 mb-6">
+                <Button 
+                  asChild 
+                  className="w-full md:hidden"
+                  size="lg"
+                >
+                  <a href="tel:+919225819192" className="flex items-center justify-center gap-2">
+                    📞 Call Now
+                  </a>
+                </Button>
+                <Button 
+                  asChild 
+                  variant="outline"
+                  className="w-full"
+                  size="lg"
+                >
+                  <a 
+                    href="https://www.google.com/maps/dir/?api=1&destination=Picnic+Point+Solapur+Maharashtra" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    🗺️ Get Directions
+                  </a>
+                </Button>
+              </div>
+
+              {/* Google Maps Embed */}
+              <div className="rounded-lg overflow-hidden shadow-lg border">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.7856893424906!2d75.90654311483042!3d17.679593887809367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5c8e9b5a0a0a1%3A0x1!2sSolapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Picnic Point Solapur Location"
+                ></iframe>
               </div>
             </div>
 
